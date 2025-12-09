@@ -1,57 +1,129 @@
 <!DOCTYPE html>
+<!-- 
+  HTML5 DOCTYPE declaration - tells the browser this is an HTML5 document
+  Essential for proper rendering and cross-browser compatibility
+-->
 <html lang="en">
+  <!-- 
+    Head section contains metadata and linked resources
+    Not displayed directly on the page but essential for functionality
+  -->
   <head>
+    <!-- Character encoding - ensures proper display of special characters -->
     <meta charset="UTF-8" />
+    <!-- 
+      Viewport meta tag - crucial for responsive design
+      Makes the page adapt to different screen sizes, especially mobile devices
+    -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page title - appears in browser tab and bookmarks -->
     <title>QuizApp</title>
+    <!-- Link to external CSS stylesheet - separates presentation from content -->
     <link rel="stylesheet" href="style.css" />
   </head>
+
+  <!-- Body section - contains all visible content -->
   <body>
+    <!-- Main container - centers content and provides consistent styling -->
     <div class="container">
-      <div class="screen active
-      " id="start-screen">
+      <!-- 
+        Start screen - initial landing page before quiz begins
+        Uses "active" class to make it visible by default
+        IDs allow JavaScript to select and manipulate this element
+      -->
+      <div class="screen active" id="start-screen">
         <h1>Quiz Time!</h1>
         <p>Test your knowledge with these fun questions</p>
+        <!-- 
+          Start button - triggers the beginning of the quiz
+          JavaScript will listen for clicks on this button
+        -->
         <button id="start-btn">Start Quiz</button>
       </div>
 
+      <!-- 
+        Quiz screen - displays questions and answers
+        Initially hidden (no "active" class)
+        Contains all interactive quiz elements
+      -->
       <div class="screen" id="quiz-screen">
+        <!-- Header section for quiz content -->
         <div class="quiz-header">
+          <!-- 
+            Question text placeholder - will be dynamically updated with JavaScript
+            ID allows JavaScript to easily change the content
+          -->
           <h2 id="question-text">Question goes here</h2>
 
+          <!-- 
+            Quiz information panel - shows progress and score
+            Uses Flexbox layout (defined in CSS) for horizontal arrangement
+          -->
           <div class="quiz-info">
             <p>
-              Question <span id="current-question">1</span> of <span id="total-questions">5</span>
+              <!-- 
+                Current question tracker - shows which question the user is on
+                Span elements allow JavaScript to update just these values
+              -->
+              Question <span id="current-question">1</span> of
+              <span id="total-questions">5</span>
             </p>
 
+            <!-- Score display - updates as user answers questions correctly -->
             <p>Score: <span id="score">0</span></p>
           </div>
         </div>
 
+        <!-- 
+          Answers container - holds dynamically created answer buttons
+          JavaScript will insert buttons here based on the current question
+        -->
         <div class="answers-container" id="answers-container">
+          <!-- Placeholder comment - explains purpose for developers -->
           <!-- Answer buttons will be inserted here -->
         </div>
 
+        <!-- 
+          Progress bar - visual indicator of quiz completion
+          Outer container provides styling and dimensions
+          Inner element (progress) changes width to show progress
+        -->
         <div class="progress-bar">
           <div class="progress" id="progress"></div>
         </div>
       </div>
+
+      <!-- 
+        Results screen - shown after completing all questions
+        Displays final score and personalized message
+      -->
       <div class="screen" id="result-screen">
         <h1>Quiz Results</h1>
 
+        <!-- Results information panel -->
         <div class="result-info">
           <p>
+            <!-- Final score display - shows how many questions were answered correctly -->
             You scored <span id="final-score">0</span> out of
             <span id="max-score">5</span>
           </p>
 
+          <!-- 
+            Personalized message - changes based on user's performance
+            JavaScript calculates percentage and selects appropriate message
+          -->
           <div id="result-message">Good job!</div>
         </div>
 
+        <!-- Restart button - allows user to take the quiz again -->
         <button id="restart-btn">Restart Quiz</button>
       </div>
     </div>
 
+    <!-- 
+      Link to external JavaScript file - placed at end of body for better performance
+      Ensures HTML is fully loaded before JavaScript tries to access elements
+    -->
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,178 +1,369 @@
-/* Basic Reset */
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* 
+  CSS Reset - eliminates default browser styling inconsistencies
+  Box-sizing border-box includes padding and border in element's total width/height
+  This makes layout calculations more predictable and intuitive
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-   background: #f5efe6; 
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   min-height: 100vh;
-   padding: 1rem;
-   font-family: sans-serif;
+/* 
+  Body styles - sets up the overall page layout
+  Flexbox centering technique:
+    - display: flex creates a flex container
+    - justify-content: center aligns items horizontally
+    - align-items: center aligns items vertically
+  This centers the quiz container both horizontally and vertically
+  min-height: 100vh ensures body takes at least full viewport height
+  Font-family provides fallback fonts for better compatibility
+*/
+body {
+  background: #f5efe6; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  font-family: sans-serif;
 }
 
-.container{
-    background-color: #ffffff;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    overflow: hidden;
-    position: relative; 
+/* 
+  Container styles - main wrapper for all quiz content
+  Provides visual styling and responsive constraints:
+    - background-color: white background for content
+    - border-radius: rounded corners for modern look
+    - box-shadow: subtle shadow for depth effect
+    - max-width: limits width on larger screens
+    - overflow: hidden prevents content spillover
+    - position: relative enables proper positioning of child elements
+*/
+.container {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  position: relative; 
 }
 
-.screen{
-    display: none;
-    padding: 2rem;
-    text-align: center;
+/* 
+  Screen styles - base styling for all quiz screens
+  Uses display: none to hide screens by default
+  Padding provides consistent spacing inside each screen
+  text-align: center centers text content
+*/
+.screen {
+  display: none;
+  padding: 2rem;
+  text-align: center;
 }
 
-.screen.active{
-    display: block;
+/* 
+  Active screen class - overrides display: none to show current screen
+  This is the core mechanism for switching between screens
+  Only one screen should have this class at a time
+*/
+.screen.active {
+  display: block;
 }
 
-#start-screen h1{
-    color: #e86a33;
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-
+/* 
+  Start screen header styling
+  Color creates visual hierarchy and brand identity
+  margin-bottom adds spacing below the heading
+  font-size makes the heading prominent
+*/
+#start-screen h1 {
+  color: #e86a33;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
 }
 
-#start-screen p{
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    color: #666666;
+/* 
+  Start screen paragraph styling
+  margin-bottom adds spacing before the button
+  font-size controls text size for readability
+  color provides sufficient contrast while being visually softer than headings
+*/
+#start-screen p {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  color: #666666;
 }
 
-.quiz-header{
-    margin-bottom: 2rem;
+/* 
+  Quiz header spacing
+  margin-bottom creates separation between header and answers
+*/
+.quiz-header {
+  margin-bottom: 2rem;
 }
 
-#question-text{
-    color: #333333;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    line-height: 1.4;
+/* 
+  Question text styling
+  color ensures good readability
+  font-size makes questions prominent
+  margin-bottom adds spacing below the question
+  line-height improves readability for multi-line questions
+*/
+#question-text {
+  color: #333333;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
-.quiz-info{
-    display: flex;
-    justify-content: space-between;
-    color: #666666;
-    margin-bottom: 10px;
+/* 
+  Quiz info panel styling
+  Uses Flexbox for horizontal layout:
+    - display: flex creates a flex container
+    - justify-content: space-between distributes items with maximum spacing
+  color provides consistent text styling
+  margin-bottom adds spacing below the info panel
+*/
+.quiz-info {
+  display: flex;
+  justify-content: space-between;
+  color: #666666;
+  margin-bottom: 10px;
 }
 
-.answers-container{
-    display: flex;
-    flex-direction: column;
-    gap: 10x;
-    margin-bottom: 25px;
+/* 
+  Answers container styling
+  Uses Flexbox column layout for vertical stacking of answer buttons:
+    - display: flex creates a flex container
+    - flex-direction: column arranges children vertically
+    - gap: 10px adds consistent spacing between buttons
+  margin-bottom adds spacing before the progress bar
+*/
+.answers-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
 }
 
-.answer-btn{
-   background-color: #f8f0e5;
-   color: #333333;
-   border: 2px solid #eadbc8;
-   border-radius: 10px;
-   padding: 1rem;
-   cursor: pointer;
-   text-align: left; 
-   transition: all 0.3s ease;
+/* 
+  Answer button base styling
+  Provides consistent appearance for all answer options:
+    - background-color gives a soft background
+    - color ensures readable text
+    - border adds definition to buttons
+    - border-radius creates rounded corners
+    - padding provides comfortable click area
+    - cursor: pointer indicates interactivity
+    - text-align: left aligns text to the left (more natural for lists)
+    - transition adds smooth hover effects
+*/
+.answer-btn {
+  background-color: #f8f0e5;
+  color: #333333;
+  border: 2px solid #eadbc8;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  text-align: left; 
+  transition: all 0.3s ease;
 }
 
-.answer-btn:hover{
-    background-color: #eabdc8;
-    border-color: #dac0ae;
+/* 
+  Answer button hover state
+  Provides visual feedback when user hovers over buttons:
+    - background-color changes for visual emphasis
+    - border-color updates to match
+*/
+.answer-btn:hover {
+  background-color: #eabdc8;
+  border-color: #dac0ae;
 }
 
-.answer-btn.correct{
-    background-color: #e6fff0;
-    border-color: #a3f0c4;
-    color: #28a745;
+/* 
+  Correct answer styling
+  Applied via JavaScript after user selects an answer
+  Visual indicators for correct answers:
+    - background-color: light green background
+    - border-color: green accent
+    - color: dark green text for better contrast
+*/
+.answer-btn.correct {
+  background-color: #e6fff0;
+  border-color: #a3f0c4;
+  color: #28a745;
 }
 
-.answer-btn.incorrect{
-    background-color: #fff0f0;
-    border-color: #ffbdbd;
-    color: #dc3545;
+/* 
+  Incorrect answer styling
+  Applied via JavaScript after user selects an answer
+  Visual indicators for incorrect answers:
+    - background-color: light red background
+    - border-color: red accent
+    - color: dark red text for better contrast
+*/
+.answer-btn.incorrect {
+  background-color: #fff0f0;
+  border-color: #ffbdbd;
+  color: #dc3545;
 }
 
-.progress-bar{
-    height: 10px;
-    background-color: #f8f0e5;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 20px;
+/* 
+  Progress bar container styling
+  Provides structure for the progress visualization:
+    - height sets consistent bar height
+    - background-color provides subtle background
+    - border-radius creates rounded corners
+    - overflow: hidden ensures progress doesn't spill outside
+    - margin-top adds spacing above the bar
+*/
+.progress-bar {
+  height: 10px;
+  background-color: #f8f0e5;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 20px;
 }
 
-.progress{
-    height: 100%;
-    border-radius: 5px;
-    background-color: #e86a33;
-    width: 0%;
-    transition: width 0.3s ease;
+/* 
+  Progress indicator styling
+  This element's width changes to show quiz progress:
+    - height: 100% fills the container vertically
+    - border-radius matches container for consistent rounding
+    - background-color provides visual contrast
+    - width: 0% starts at zero (updated by JavaScript)
+    - transition adds smooth animation when width changes
+*/
+.progress {
+  height: 100%;
+  border-radius: 5px;
+  background-color: #e86a33;
+  width: 0%;
+  transition: width 0.3s ease;
 }
 
-#result-screen h1{
-    color: #e86a33;
-    margin-bottom: 30px;
+/* 
+  Results screen header styling
+  Maintains visual consistency with start screen:
+    - color matches brand identity
+    - margin-bottom adds spacing below heading
+*/
+#result-screen h1 {
+  color: #e86a33;
+  margin-bottom: 30px;
 }
 
-.result-info{
-    background-color: #f8f0e5;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 30px;
+/* 
+  Results info panel styling
+  Creates a distinct visual section for results:
+    - background-color provides visual separation
+    - border-radius creates rounded corners
+    - padding adds internal spacing
+    - margin-bottom adds spacing before restart button
+*/
+.result-info {
+  background-color: #f8f0e5;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
 }
 
-.result-info p{
-    font-size: 1.2rem;
-    color: #333333;
-    margin-bottom: 1rem;
+/* 
+  Results text styling
+  Ensures good readability of results:
+    - font-size makes text prominent
+    - color ensures good contrast
+    - margin-bottom adds spacing between elements
+*/
+.result-info p {
+  font-size: 1.2rem;
+  color: #333333;
+  margin-bottom: 1rem;
 }
 
+/* 
+  Result message styling
+  Highlights the personalized feedback:
+    - font-size makes it prominent
+    - font-weight: 600 makes it bold for emphasis
+    - color matches brand identity
+*/
 #result-message {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #e86a33;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e86a33;
 }
 
-button{
-    background-color: #e86a33;
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* 
+  Button base styling
+  Provides consistent appearance for all buttons:
+    - background-color creates brand identity
+    - color ensures readable text
+    - border: none removes default browser styling
+    - border-radius creates rounded corners
+    - padding provides comfortable click area
+    - font-size ensures readable text
+    - cursor: pointer indicates interactivity
+    - transition adds smooth hover effects
+*/
+button {
+  background-color: #e86a33;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-button:hover{
-    background-color: #d45b28;
+/* 
+  Button hover state
+  Provides visual feedback when user hovers over buttons:
+    - background-color darkens for visual emphasis
+*/
+button:hover {
+  background-color: #d45b28;
 }
 
-@media (max-width: 500px){
-    .screen{
-        padding: 1rem;
-    }
+/* 
+  Media query for responsive design on small screens
+  Applies styles when screen width is 500px or less
+  Enhances usability on mobile devices
+*/
+@media (max-width: 500px) {
+  /* 
+    Screen padding adjustment for smaller screens
+    Reduces horizontal padding to maximize content space
+  */
+  .screen {
+    padding: 1rem;
+  }
 
-    #start-screen h1{
-        font-size: 2rem;
-    }
+  /* 
+    Start screen header adjustment for smaller screens
+    Reduces font size to prevent overflow
+  */
+  #start-screen h1 {
+    font-size: 2rem;
+  }
 
-    #question-text{
-        font-size: 1.2rem;
-    }
+  /* 
+    Question text adjustment for smaller screens
+    Reduces font size for better fit
+  */
+  #question-text {
+    font-size: 1.2rem;
+  }
 
-    button{
-        width: 100%;
-        padding: 12px 20px;
-        font-size: 1rem;
-    }
+  /* 
+    Button adjustment for smaller screens
+    Makes buttons full-width for easier tapping
+    Reduces padding and font size for better fit
+  */
+  button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
 }
